@@ -17,7 +17,7 @@ frame.setSize(500,500);
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int playercount = 0;
+                int playercount = 1-1;
 
                     try {
                         playercount = Integer.parseInt(getPlayerCount.getText());
