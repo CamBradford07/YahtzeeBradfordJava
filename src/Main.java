@@ -22,6 +22,7 @@ public class Main {
       JTextField player2Name = new JTextField("Computer 1");
       JTextField player3Name = new JTextField("Computer 2");
       JTextField player4Name = new JTextField("Computer 3");
+      JTextField[] nameFields = {player1Name, player2Name, player3Name, player4Name};
       
         submit.addActionListener(new ActionListener() {
             @Override
@@ -34,7 +35,9 @@ public class Main {
                             askPlayerCount.setText("Invalid Number try again, pick 1-3");
                         }
                         else{
+                            
                             frame.setVisible(false);
+                            applyNames.setVisible(true);
                         }
                     }
                     catch(NumberFormatException numExcept){
