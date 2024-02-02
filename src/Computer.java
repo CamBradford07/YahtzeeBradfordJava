@@ -1,5 +1,5 @@
 public class Computer {
-    private int rollcount;
+    private int rollCount;
     private String name;
     private boolean onesDone;
     private boolean twosDone;
@@ -143,7 +143,7 @@ public class Computer {
               totalScore += 35;
             }
           }
-        else if(rollcount == 3){
+        else if(rollCount == 3){
           if(chanceDone == false){
             chanceDone = true;
             for(int x:roll){
@@ -206,7 +206,7 @@ public class Computer {
         catch (Exception e) {
                     System.out.println(e);
                 }
-          rollcount++;
+          rollCount++;
         }
     }
 

@@ -27,6 +27,7 @@ public class Main {
       JTextField player2Name = new JTextField("Computer 1");
       JTextField player3Name = new JTextField("Computer 2");
       JTextField player4Name = new JTextField("Computer 3");
+      JTextField[] nameFields = {player1Name, player2Name, player3Name, player4Name};
 
       JLabel play1Name = new JLabel("");
       JLabel play1Bonus = new JLabel("Bonus: ");
@@ -93,8 +94,6 @@ public class Main {
       JLabel play4FullHouse = new JLabel("Full House: ");
       
       JButton submitNames = new JButton("Submit names");
-
-      
       
         submit.addActionListener(new ActionListener() {
             @Override
