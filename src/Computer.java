@@ -1,4 +1,5 @@
 public class Computer {
+    private int rollcount;
     private String name;
     private boolean onesDone;
     private boolean twosDone;
@@ -21,6 +22,7 @@ public class Computer {
     private int fourCount;
     private int fiveCount;
     private int sixCount;
+  private boolean[] dones = {onesDone, twosDone, threesDone, foursDone, fivesDone, sixesDone, threeKindDone, fourKindDone, fullHouseDone, yahtzeeDone, chanceDone, smallStraightDone, largeStraightDone};
     private int[] roll = {0,0,0,0,0};
     public Computer(String name){
         this.name = name;
@@ -41,13 +43,15 @@ public class Computer {
         totalScore = 0;
 
     }
-
+    public int[] roll(){
+    roll = new int[5];
+      for(int i = 0; i < roll.length; i++) {
+          roll[i] = (int) (Math.random() * 6 + 1);
+      }
+      return roll;
+    }
+  
     public void takeTurn(){
-        int rollcount = 0;
-        while (rollcount <= 3) {
-        for(int i = 9; i < roll.length; i++) {
-            roll[i] = (int) (Math.random() * 6 + 1);
-        }
          oneCount = 0;
          twoCount = 0;
          threeCount = 0;
@@ -193,7 +197,7 @@ public class Computer {
             if(checkBonus() == true){
               totalScore += 35;
             }
-          }
+          
         }
           
         try {
@@ -254,7 +258,6 @@ private boolean checkFullHouse(){
 }
 
 public boolean checkWin(){
-  boolean[] dones = {onesDone, twosDone, threesDone, foursDone, fivesDone, sixesDone, threeKindDone, fourKindDone, fullHouseDone, yahtzeeDone, chanceDone, smallStraightDone, largeStraightDone};
 boolean winner = true;
   for(boolean x: dones){
     if(x == false){
@@ -286,11 +289,16 @@ public String getName(){
 return name;
 }
 
+public int getRollCount(){
+return rollCount;
+}
 
+public int getScore(){
+return totalScore;
+}
 
-
-
-
-
+public boolean[] getCompleted(){
+  return dones;
+}
   
 }
