@@ -301,5 +301,9 @@ return totalScore;
 public boolean[] getCompleted(){
   return dones;
 }
+
+public void setName(String newName){
+        name = newName;
+}
   
 }
