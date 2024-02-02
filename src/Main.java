@@ -124,7 +124,7 @@ public class Main {
             }
         });
 
-        //submitNames.addActionListener();
+        // submitNames.addActionListener();
       
         panel.add(askPlayerCount);
         panel.add(getPlayerCount);

@@ -24,6 +24,7 @@ public class Computer {
     private int sixCount;
   private boolean[] dones = {onesDone, twosDone, threesDone, foursDone, fivesDone, sixesDone, threeKindDone, fourKindDone, fullHouseDone, yahtzeeDone, chanceDone, smallStraightDone, largeStraightDone};
     private int[] roll = {0,0,0,0,0};
+  
     public Computer(String name){
         this.name = name;
         onesDone = false;
