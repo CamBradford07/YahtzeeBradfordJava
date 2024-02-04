@@ -47,6 +47,32 @@ public class Main {
 
         JButton rollButton = new JButton("Roll");
         JButton onesButton = new JButton("ones");
+      JButton twosButton = new JButton("twos");
+      JButton threesButton = new JButton("threes");
+      JButton foursButton = new JButton("fours");
+      JButton fivesButton = new JButton("fives");
+      JButton sixesButton = new JButton("sixes");
+
+      JButton threeKindButton = new JButton("Three Kind");
+      JButton fourKindButton = new JButton("Four Kind");
+      JButton smallStraightButton = new JButton("Small Straight");
+      JButton largeStraightButton = new JButton("Large Straight");
+      JButton fullHouseButton = new JButton("Full House");
+      JButton yahtzeeButton = new JButton("Yahtzee");
+      JButton chanceButton = new JButton("Chance");
+
+      JButton resetaSaved = new JButton("reset saved");
+      JButton saveOne = new JButton("save die one");
+      JButton saveTwo = new JButton("save die two");
+      JButton saveThree = new JButton("save die three");
+      JButton saveFour = new JButton("save die four");
+      JButton saveFive = new JButton("save die five");
+
+      JLabel oneLabel = new JLabel("1");
+      JLabel twoLabel = new JLabel("2");
+      JLabel threeLabel = new JLabel("3");
+      JLabel fourLabel = new JLabel("4");
+      JLabel fiveLabel = new JLabel("5");
 
       JLabel play1Name = new JLabel("");
       JLabel play1Bonus = new JLabel("Bonus: ");
@@ -150,7 +176,7 @@ public class Main {
         submitNames.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int playerCount = Integer.parseInt(getPlayerCount.getText()) + 1;
+                int playerCount = submit.get(playerCount) + 1;
                 play1Name.setText(player1Name.getText());
                 Computer comp1 = new Computer("Seaver");
                 Computer comp2 = new Computer("Alex");
@@ -164,56 +190,27 @@ public class Main {
                         }
                     }
                 }
-                if(playerCount == 2){
-                    playGame.add(play1Name);
-                    playGame.add(play1Score);
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(play1Ones);
-                    playGame.add(play1ThreeKind);
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(play1Twos);
-                    playGame.add(play1FourKind);
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(play1Threes);
-                    playGame.add(play1FullHouse);
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                    playGame.add(new JLabel(""));
-                }
+                playGame.add(play1Name);
+              playGame.add(play1Score);
+              playGame.add(new JLabel(""));
+              playGame.add(new JLabel(""));
+              playGame.add(new JLabel(""));
+              playGame.add(new JLabel(""));
+              playGame.add(new JLabel(""));
+              playGame.add(new JLabel(""));
+              playGame.add(new JLabel(""));
+              playGame.add(new JLabel(""));
+              if(playerCount >= 3){
+                playGame.add(play3Name);
+                playGame.add(play3Score);
+              }
+              else{
+                playGame.add(new JLabel(""));
+                playGame.add(new JLabel(""));
+              }
+              playGame.add(play1Ones);
+              playGame.add(play1ThreeKind);
+              
                 game.add(playGame);
                 applyNames.setVisible(false);
                 game.setVisible(true);
