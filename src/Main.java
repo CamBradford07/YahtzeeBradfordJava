@@ -10,7 +10,7 @@ public class Main {
         JFrame applyNames = new JFrame("Enter Names");
         applyNames.setSize(500,500);
       JFrame game = new JFrame("Play Yahtzee");
-      game.setSize(750,1000);
+      game.setSize(1500,750);
         
       
         JPanel panel = new JPanel(new GridLayout(3,1));
@@ -29,21 +29,26 @@ public class Main {
       JTextField player4Name = new JTextField("Computer 3");
       JTextField[] nameFields = {player1Name, player2Name, player3Name, player4Name};
 
-        ImageIcon die1icon = new ImageIcon("Images/burger.png");
+        ImageIcon die1icon = new ImageIcon("Images/1die.png");
         die1icon.setImage(die1icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
-        JLabel firstDie = new JLabel(die1icon);
-        ImageIcon die2icon = new ImageIcon("Images/burger.png");
+        ImageIcon die2icon = new ImageIcon("Images/2die.png");
         die2icon.setImage(die2icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
-        JLabel secondDie = new JLabel(die2icon);
-        ImageIcon die3icon = new ImageIcon("Images/burger.png");
+        ImageIcon die3icon = new ImageIcon("Images/3die.png");
         die3icon.setImage(die3icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
-        JLabel thirdDie = new JLabel(die3icon);
-        ImageIcon die4icon = new ImageIcon("Images/burger.png");
+        ImageIcon die4icon = new ImageIcon("Images/4die.png");
         die4icon.setImage(die4icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
-        JLabel fourthDie = new JLabel(die4icon);
-        ImageIcon die5icon = new ImageIcon("Images/burger.png");
+        ImageIcon die5icon = new ImageIcon("Images/5die.png");
         die5icon.setImage(die5icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
-        JLabel fifthDie = new JLabel(die5icon);
+        ImageIcon die6icon = new ImageIcon("Images/6die.png");
+        die6icon.setImage(die6icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
+
+        ImageIcon blankicon = new ImageIcon("Images/blank.png");
+        blankicon.setImage(blankicon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
+        JLabel firstDie = new JLabel(blankicon);
+        JLabel secondDie = new JLabel(blankicon);
+        JLabel thirdDie = new JLabel(blankicon);
+        JLabel fourthDie = new JLabel(blankicon);
+        JLabel fifthDie = new JLabel(blankicon);
 
         JButton rollButton = new JButton("Roll");
         JButton onesButton = new JButton("ones");
@@ -61,18 +66,12 @@ public class Main {
       JButton yahtzeeButton = new JButton("Yahtzee");
       JButton chanceButton = new JButton("Chance");
 
-      JButton resetaSaved = new JButton("reset saved");
+      JButton resetSaved = new JButton("reset saved");
       JButton saveOne = new JButton("save die one");
       JButton saveTwo = new JButton("save die two");
       JButton saveThree = new JButton("save die three");
       JButton saveFour = new JButton("save die four");
       JButton saveFive = new JButton("save die five");
-
-      JLabel oneLabel = new JLabel("1");
-      JLabel twoLabel = new JLabel("2");
-      JLabel threeLabel = new JLabel("3");
-      JLabel fourLabel = new JLabel("4");
-      JLabel fiveLabel = new JLabel("5");
 
       JLabel play1Name = new JLabel("");
       JLabel play1Bonus = new JLabel("Bonus: ");
@@ -141,8 +140,20 @@ public class Main {
       JLabel play4Yahtzee = new JLabel("Yahtzee: ");
       JLabel play4FullHouse = new JLabel("Full House: ");
       JLabel play4Score = new JLabel("Score: 0");
-      
-      JButton submitNames = new JButton("Submit names");
+
+      JLabel[] player1UpperLabels = {play1Name,play1Ones,play1Twos, play1Threes, play1Fours, play1Fives, play1Sixes,play1Bonus};
+      JLabel[] player1LowerLabels = {play1Score,play1ThreeKind,play1FourKind, play1FullHouse, play1SmallStraight, play1LargeStraight, play1Chance,play1Yahtzee};
+
+        JLabel[] player2UpperLabels = {play2Name,play2Ones,play2Twos, play2Threes, play2Fours, play2Fives, play2Sixes,play2Bonus};
+        JLabel[] player2LowerLabels = {play2Score,play2ThreeKind,play2FourKind, play2FullHouse, play2SmallStraight, play2LargeStraight, play2Chance,play2Yahtzee};
+
+        JLabel[] player3UpperLabels = {play3Name,play3Ones,play3Twos, play3Threes, play3Fours, play3Fives, play3Sixes,play3Bonus};
+        JLabel[] player3LowerLabels = {play3Score,play3ThreeKind,play3FourKind, play3FullHouse, play3SmallStraight, play3LargeStraight, play3Chance,play3Yahtzee};
+
+        JLabel[] player4UpperLabels = {play4Name,play4Ones,play4Twos, play4Threes, play4Fours, play4Fives, play4Sixes,play4Bonus};
+        JLabel[] player4LowerLabels = {play4Score,play4ThreeKind,play4FourKind, play4FullHouse, play4SmallStraight, play4LargeStraight, play4Chance,play4Yahtzee};
+
+        JButton submitNames = new JButton("Submit names");
       
         submit.addActionListener(new ActionListener() {
             @Override
@@ -190,27 +201,144 @@ public class Main {
                         }
                     }
                 }
-                playGame.add(play1Name);
-              playGame.add(play1Score);
-              playGame.add(new JLabel(""));
-              playGame.add(new JLabel(""));
-              playGame.add(new JLabel(""));
-              playGame.add(new JLabel(""));
-              playGame.add(new JLabel(""));
-              playGame.add(new JLabel(""));
-              playGame.add(new JLabel(""));
-              playGame.add(new JLabel(""));
-              if(playerCount >= 3){
-                playGame.add(play3Name);
-                playGame.add(play3Score);
-              }
-              else{
-                playGame.add(new JLabel(""));
-                playGame.add(new JLabel(""));
-              }
-              playGame.add(play1Ones);
-              playGame.add(play1ThreeKind);
-              
+                play2Name.setText(comp1.getName());
+                play3Name.setText(comp2.getName());
+                play4Name.setText(comp3.getName());
+                for(int i = 0; i < player1UpperLabels.length; i++){
+                    playGame.add(player1UpperLabels[i]);
+                }
+                playGame.add(new JLabel(blankicon));
+                for(int i = player2UpperLabels.length - 1; i >= 0; i--){
+                    playGame.add(player2UpperLabels[i]);
+                }
+                for(int i = 0; i < player1LowerLabels.length; i++){
+                    playGame.add(player1LowerLabels[i]);
+                }
+                playGame.add(new JLabel(blankicon));
+                for(int i = player2LowerLabels.length - 1; i >= 0; i--){
+                    playGame.add(player2LowerLabels[i]);
+                }
+                for(int i = 1; i <= 17; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                for(int i = 1; i <= 6; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                playGame.add(firstDie);
+                playGame.add(secondDie);
+                playGame.add(thirdDie);
+                playGame.add(fourthDie);
+                playGame.add(fifthDie);
+                for(int i = 1; i <= 6; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                for(int i = 1; i <= 6; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                playGame.add(new JLabel("1"));
+                playGame.add(new JLabel("2"));
+                playGame.add(new JLabel("3"));
+                playGame.add(new JLabel("4"));
+                playGame.add(new JLabel("5"));
+                for(int i = 1; i <= 6; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                for(int i = 1; i <= 3; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                playGame.add(onesButton);
+                playGame.add(twosButton);
+                for(int i = 1; i <= 7; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                playGame.add(threeKindButton);
+                playGame.add(smallStraightButton);
+                for(int i = 1; i <= 3; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                for(int i = 1; i <= 3; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                playGame.add(threesButton);
+                playGame.add(foursButton);
+                playGame.add(new JLabel(blankicon));
+                playGame.add(saveOne);
+                playGame.add(saveTwo);
+                playGame.add(saveThree);
+                playGame.add(saveFour);
+                playGame.add(saveFive);
+                playGame.add(new JLabel(blankicon));
+                playGame.add(fourKindButton);
+                playGame.add(largeStraightButton);
+                for(int i = 1; i <= 3; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                for(int i = 1; i <= 3; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                playGame.add(fivesButton);
+                playGame.add(sixesButton);
+                for(int i = 1; i <= 7; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                playGame.add(fullHouseButton);
+                playGame.add(chanceButton);
+                for(int i = 1; i <= 3; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                for(int i = 1; i <= 6; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                playGame.add(yahtzeeButton);
+                playGame.add(new JLabel(blankicon));
+                playGame.add(rollButton);
+                playGame.add(new JLabel(blankicon));
+                playGame.add(resetSaved);
+                for(int i = 1; i <= 6; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                for(int i = 1; i <= 17; i++){
+                    playGame.add(new JLabel(blankicon));
+                }
+                if(playerCount >= 3){
+                    for(int i = 0; i < player3UpperLabels.length; i++){
+                        playGame.add(player3UpperLabels[i]);
+                    }
+                    playGame.add(new JLabel(blankicon));
+                    if(playerCount == 4){
+                        for(int i = 0; i < player4UpperLabels.length; i++){
+                            playGame.add(player4UpperLabels[i]);
+                        }
+                    }
+                    else{
+                        for(int i = player4UpperLabels.length; i >= 0; i--){
+                            playGame.add(new JLabel(blankicon));
+                        }
+                    }
+                    for(int i = 0; i < player3LowerLabels.length; i++){
+                        playGame.add(player3LowerLabels[i]);
+                    }
+                    playGame.add(new JLabel(blankicon));
+                    if(playerCount == 4){
+                        for(int i = player4LowerLabels.length; i >= 0; i--){
+                            playGame.add(player4LowerLabels[i]);
+                        }
+                    }
+                    else{
+                        for(int i = 0; i < player4UpperLabels.length; i++){
+                            playGame.add(new JLabel(blankicon));
+                        }
+                    }
+                }
+                else{
+                    for(int i = 1; i <= 17; i++){
+                        playGame.add(new JLabel(blankicon));
+                    }
+                    for(int i = 1; i <= 17; i++){
+                        playGame.add(new JLabel(blankicon));
+                    }
+                }
+
                 game.add(playGame);
                 applyNames.setVisible(false);
                 game.setVisible(true);

@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdff2efd-eadf-46a5-9a17-176dcd84dd5d" name="Changes" comment="continued work on computer class">
+    <list default="true" id="fdff2efd-eadf-46a5-9a17-176dcd84dd5d" name="Changes" comment="stardet building game">
+      <change afterPath="$PROJECT_DIR$/Images/blank.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Computer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,20 +73,29 @@
       <option name="project" value="LOCAL" />
       <updated>1706635837171</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="stardet building game">
+      <option name="closed" value="true" />
+      <created>1706907245915</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706907245915</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Xreated project" />
     <MESSAGE value="created project" />
-    <option name="LAST_COMMIT_MESSAGE" value="created project" />
+    <MESSAGE value="stardet building game" />
+    <option name="LAST_COMMIT_MESSAGE" value="stardet building game" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>229</line>
+          <line>354</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
