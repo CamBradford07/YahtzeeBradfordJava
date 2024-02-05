@@ -176,7 +176,7 @@ public class Main {
         submitNames.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int playerCount = submit.get(playerCount) + 1;
+                int playerCount = Integer.parseInt(getPlayerCount.getText()) + 1;
                 play1Name.setText(player1Name.getText());
                 Computer comp1 = new Computer("Seaver");
                 Computer comp2 = new Computer("Alex");
