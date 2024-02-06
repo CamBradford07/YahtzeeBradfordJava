@@ -25,5 +25,18 @@ public class Player{
   private boolean[] dones = {onesDone, twosDone, threesDone, foursDone, fivesDone, sixesDone, threeKindDone, fourKindDone, fullHouseDone, yahtzeeDone, chanceDone, smallStraightDone, largeStraightDone};
   private int[] roll = {0,0,0,0,0};
 
-  
+  public Player(String name){
+    this.name = name;
+  }
+
+  public int[] roll(){
+    for(int i = 0; i < roll.length;i++){
+      roll[i] = (int)(Math.random() * 6 + 1);
+    }
+    return roll;
+  }
+
+  public String getName(){
+    return name;
+  }
 }
