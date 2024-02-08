@@ -236,6 +236,12 @@ public class Main {
       play4Yahtzee
     };
 
+    saveOne.setVisible(false);
+    saveTwo.setVisible(false);
+    saveThree.setVisible(false);
+    saveFour.setVisible(false);
+    saveFive.setVisible(false);
+
     JButton submitNames = new JButton("Submit names");
 
     submit.addActionListener(new ActionListener() {
@@ -273,6 +279,7 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         int playerCount = Integer.parseInt(getPlayerCount.getText()) + 1;
+        play.setName(player1Name.getText());
         play1Name.setText(play.getName());
 
         if (playerCount >= 2) {
@@ -429,7 +436,6 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         int[] roll = play.roll();
-        System.out.println(roll);
         for (int i = 0; i < roll.length; i++) {
           if (roll[i] == 1) {
             dieImages[i].setIcon(die1icon);
@@ -447,6 +453,84 @@ public class Main {
             dieImages[i].setIcon(die6icon);
           }
         }
+        for(int i = 0; i < 5; i++) {
+          play.setSave(i, false);
+        }
+        saveOne.setVisible(true);
+        saveTwo.setVisible(true);
+        saveThree.setVisible(true);
+        saveFour.setVisible(true);
+        saveFive.setVisible(true);
+
+        if(play.getRollCount() >= 3){
+          rollButton.setVisible(false);
+          saveOne.setVisible(false);
+          saveTwo.setVisible(false);
+          saveThree.setVisible(false);
+          saveFour.setVisible(false);
+          saveFive.setVisible(false);
+          resetSaved.setVisible(false);
+        }
+      }
+    });
+
+    saveOne.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+
+        play.setSave(0,true);
+        saveOne.setVisible(false);
+      }
+    });
+
+    saveTwo.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+
+        play.setSave(1,true);
+        saveTwo.setVisible(false);
+      }
+    });
+
+    saveThree.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+
+        play.setSave(2,true);
+        saveThree.setVisible(false);
+      }
+    });
+
+    saveFour.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+
+        play.setSave(3,true);
+        saveFour.setVisible(false);
+      }
+    });
+
+    saveFive.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+
+        play.setSave(4,true);
+        saveFive.setVisible(false);
+      }
+    });
+
+    resetSaved.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        for(int i = 0; i < 5; i++) {
+          play.setSave(i, false);
+
+        }
+        saveOne.setVisible(true);
+        saveTwo.setVisible(true);
+        saveThree.setVisible(true);
+        saveFour.setVisible(true);
+        saveFive.setVisible(true);
       }
     });
 

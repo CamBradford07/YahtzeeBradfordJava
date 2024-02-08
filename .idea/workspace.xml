@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdff2efd-eadf-46a5-9a17-176dcd84dd5d" name="Changes" comment="worked on adding stuff">
+    <list default="true" id="fdff2efd-eadf-46a5-9a17-176dcd84dd5d" name="Changes" comment="gui visually works and roll has an action listener">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/3die.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/3die.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/4die.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/4die.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Computer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
@@ -95,6 +93,17 @@
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Xreated project" />
     <MESSAGE value="created project" />
@@ -107,7 +116,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>459</line>
+          <line>543</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -325,7 +325,7 @@ public class Computer {
         break;
       }
     }
-    if (allDone == true && upperScore >= 63) {
+    if(allDone == true && upperScore >= 63) {
       return true;
     } else {
       return false;
