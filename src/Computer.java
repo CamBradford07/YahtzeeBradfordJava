@@ -101,7 +101,7 @@ public class Computer {
     } else if (((oneCount == 1 && twoCount == 1 && threeCount == 1 && fourCount == 1 && fiveCount == 1) || (twoCount == 1 && threeCount == 1 && fourCount == 1 && fiveCount == 1 && sixCount == 1)) && largeStraightDone == false) {
       largeStraightDone = true;
       totalScore += 40;
-    } else if (((oneCount == 1 && twoCount == 1 && threeCount == 1 && fourCount == 1) || (twoCount == 1 & threeCount == 1 && fourCount == 1 && fiveCount == 1) || (threeCount == 1 && fourCount == 1 && fiveCount == 1 && sixCount == 1)) && smallStraightDone == false) {
+    } else if (((oneCount >= 1 && twoCount >= 1 && threeCount >= 1 && fourCount >= 1) || (twoCount >= 1 & threeCount >= 1 && fourCount >= 1 && fiveCount >= 1) || (threeCount >= 1 && fourCount >= 1 && fiveCount >= 1 && sixCount >= 1)) && smallStraightDone == false) {
       smallStraightDone = true;
       totalScore += 30;
     } else if (fh == true && fullHouseDone == false) {
