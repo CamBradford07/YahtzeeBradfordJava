@@ -35,21 +35,6 @@ public class Player {
     fourSaved,
     fiveSaved
   };
-  private boolean[] dones = {
-    onesDone,
-    twosDone,
-    threesDone,
-    foursDone,
-    fivesDone,
-    sixesDone,
-    threeKindDone,
-    fourKindDone,
-    fullHouseDone,
-    yahtzeeDone,
-    chanceDone,
-    smallStraightDone,
-    largeStraightDone
-  };
   private int[] roll = {
     0,
     0,
@@ -60,16 +45,40 @@ public class Player {
 
   public Player(String name) {
     this.name = name;
-    for (int i = 0; i < saved.length; i++) {
-      saved[i] = false;
-    }
+    onesDone = false;
+    twosDone = false;
+    threesDone = false;
+    foursDone = false;
+    fivesDone = false;
+    sixesDone = false;
+    fullHouseDone = false;
+    fourKindDone = false;
+    threeKindDone = false;
+    smallStraightDone = false;
+    largeStraightDone = false;
+    yahtzeeDone = false;
+    chanceDone = false;
   }
 
   public int[] roll() {
+    oneCount = 0;
+    twoCount = 0;
+    threeCount = 0;
+    fourCount = 0;
+    fiveCount = 0;
+    sixCount = 0;
     for (int i = 0; i < roll.length; i++) {
       if (saved[i] == false) {
         roll[i] = (int)(Math.random() * 6 + 1);
       }
+    }
+    for(int x: roll){
+      if(x == 1){oneCount++;}
+      else if(x == 2){twoCount++;}
+      else if(x == 3){threeCount++;}
+      else if(x == 4){fourCount++;}
+      else if(x == 5){fiveCount++;}
+      else{sixCount++;}
     }
     rollCount++;
     return roll;
@@ -96,6 +105,7 @@ public class Player {
   }
 
   public boolean checkWin() {
+    boolean[] dones = {onesDone,twosDone,threesDone,foursDone,fivesDone,sixesDone,smallStraightDone,largeStraightDone, threeKindDone, fourKindDone, fullHouseDone, yahtzeeDone, chanceDone};
     boolean won = true;
     for (boolean x: dones) {
       if (x == false) {
@@ -455,4 +465,7 @@ public class Player {
     }
   }
 
+  public boolean getYahtzeeDone(){
+    return yahtzeeDone;
+  }
 }

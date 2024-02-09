@@ -98,7 +98,7 @@ public class Main {
     JLabel play1FourKind = new JLabel("4 Set: ");
     JLabel play1ThreeKind = new JLabel("3 Set: ");
     JLabel play1Yahtzee = new JLabel("Yahtzee: ");
-    JLabel play1FullHouse = new JLabel("Full House: ");
+    JLabel play1FullHouse = new JLabel("Full: ");
     JLabel play1Score = new JLabel("Score: 0");
 
     JLabel play2Name = new JLabel("");
@@ -115,7 +115,7 @@ public class Main {
     JLabel play2FourKind = new JLabel("4 Set: ");
     JLabel play2ThreeKind = new JLabel("3 Set: ");
     JLabel play2Yahtzee = new JLabel("Yahtzee: ");
-    JLabel play2FullHouse = new JLabel("Full House: ");
+    JLabel play2FullHouse = new JLabel("Full: ");
     JLabel play2Score = new JLabel("Score: 0");
 
     JLabel play3Name = new JLabel("");
@@ -132,7 +132,7 @@ public class Main {
     JLabel play3FourKind = new JLabel("4 Set: ");
     JLabel play3ThreeKind = new JLabel("3 Set: ");
     JLabel play3Yahtzee = new JLabel("Yahtzee: ");
-    JLabel play3FullHouse = new JLabel("Full House: ");
+    JLabel play3FullHouse = new JLabel("Full: ");
     JLabel play3Score = new JLabel("Score: 0");
 
     JLabel play4Name = new JLabel("");
@@ -149,7 +149,7 @@ public class Main {
     JLabel play4FourKind = new JLabel("4 Set: ");
     JLabel play4ThreeKind = new JLabel("3 Set: ");
     JLabel play4Yahtzee = new JLabel("Yahtzee: ");
-    JLabel play4FullHouse = new JLabel("Full House: ");
+    JLabel play4FullHouse = new JLabel("Full: ");
     JLabel play4Score = new JLabel("Score: 0");
 
     JLabel[] player1UpperLabels = {
@@ -540,15 +540,15 @@ public class Main {
           sixesButton.setVisible(false);
         }
         
-        if(play.getRollCount() >= 3){
-          rollButton.setVisible(false);
-          saveOne.setVisible(false);
-          saveTwo.setVisible(false);
-          saveThree.setVisible(false);
-          saveFour.setVisible(false);
-          saveFive.setVisible(false);
-          resetSaved.setVisible(false);
-        }
+//        if(play.getRollCount() >= 3){
+//          rollButton.setVisible(false);
+//          saveOne.setVisible(false);
+//          saveTwo.setVisible(false);
+//          saveThree.setVisible(false);
+//          saveFour.setVisible(false);
+//          saveFive.setVisible(false);
+//          resetSaved.setVisible(false);
+//        }
       }
     });
 
@@ -616,11 +616,307 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
       play.completeOnes();
-      onesButton.setVisible(false);
+      play1Ones.setText(play1Ones.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
       play1Score.setText("Score: " + play.getScore());
+      if(play.checkBonus() == true){
+        play1Bonus.setText("Bonus: ✓");
+      }
       }
     });
-    
+
+    twosButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeTwos();
+        play1Twos.setText(play1Twos.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+        if(play.checkBonus() == true){
+          play1Bonus.setText("Bonus: ✓");
+        }
+      }
+    });
+
+    threesButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeThrees();
+        play1Threes.setText(play1Threes.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+        if(play.checkBonus() == true){
+          play1Bonus.setText("Bonus: ✓");
+        }
+      }
+    });
+
+    foursButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeFours();
+        play1Fours.setText(play1Fours.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+        if(play.checkBonus() == true){
+          play1Bonus.setText("Bonus: ✓");
+        }
+      }
+    });
+
+    fivesButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeFives();
+        play1Fives.setText(play1Fives.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+        if(play.checkBonus() == true){
+          play1Bonus.setText("Bonus: ✓");
+        }
+      }
+    });
+
+    sixesButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeSixes();
+        play1Sixes.setText(play1Sixes.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+        if(play.checkBonus() == true){
+          play1Bonus.setText("Bonus: ✓");
+        }
+      }
+    });
+
+    yahtzeeButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+          if(play.getYahtzeeDone() == false){
+          play1Yahtzee.setText(play1Yahtzee.getText() + "✓");
+        }
+        play.completeYahtzee();
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+      }
+    });
+
+    smallStraightButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeSmallStraight();
+        play1SmallStraight.setText(play1SmallStraight.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+      }
+    });
+
+    largeStraightButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeLargeStraight();
+        play1LargeStraight.setText(play1LargeStraight.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+      }
+    });
+
+    fourKindButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeFourKind();
+        play1FourKind.setText(play1FourKind.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+      }
+    });
+
+    threeKindButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeThreeKind();
+        play1ThreeKind.setText(play1ThreeKind.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+      }
+    });
+
+    fullHouseButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeFullHouse();
+        play1FullHouse.setText(play1FullHouse.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+      }
+    });
+
+    chanceButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        play.completeChance();
+        play1Chance.setText(play1Chance.getText() + "✓");
+        chanceButton.setVisible(false);
+        onesButton.setVisible(false);
+        twosButton.setVisible(false);
+        threesButton.setVisible(false);
+        foursButton.setVisible(false);
+        fivesButton.setVisible(false);
+        sixesButton.setVisible(false);
+        threeKindButton.setVisible(false);
+        fourKindButton.setVisible(false);
+        fullHouseButton.setVisible(false);
+        smallStraightButton.setVisible(false);
+        largeStraightButton.setVisible(false);
+        yahtzeeButton.setVisible(false);
+        play1Score.setText("Score: " + play.getScore());
+      }
+    });
 
     panel.add(askPlayerCount);
     panel.add(getPlayerCount);
