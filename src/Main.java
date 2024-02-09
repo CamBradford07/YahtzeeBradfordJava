@@ -461,7 +461,85 @@ public class Main {
         saveThree.setVisible(true);
         saveFour.setVisible(true);
         saveFive.setVisible(true);
-
+        if(play.checkYahtzee() == true){
+          yahtzeeButton.setVisible(true);
+        }
+        else{
+          yahtzeeButton.setVisible(false);
+        }
+        if(play.checkFourKind() == true){
+          fourKindButton.setVisible(true);
+        }
+        else{
+          fourKindButton.setVisible(false);
+        }
+        if(play.checkThreeKind() == true){
+          threeKindButton.setVisible(true);
+        }
+        else{
+          threeKindButton.setVisible(false);
+        }
+        if(play.checkFullHouse() == true){
+          fullHouseButton.setVisible(true);
+        }
+        else{
+          fullHouseButton.setVisible(false);
+        }
+        if(play.checkSmallStraight() == true){
+          smallStraightButton.setVisible(true);
+        }
+        else{
+          smallStraightButton.setVisible(false);
+        }
+        if(play.checkLargeStraight() == true){
+          largeStraightButton.setVisible(true);
+        }
+        else{
+          largeStraightButton.setVisible(false);
+        }
+        if(play.checkChance() == true){
+          chanceButton.setVisible(true);
+        }
+        else{
+          chanceButton.setVisible(false);
+        }
+        if(play.checkOnes() == true){
+          onesButton.setVisible(true);
+        }
+        else{
+          onesButton.setVisible(false);
+        }
+        if(play.checkTwos() == true){
+          twosButton.setVisible(true);
+        }
+        else{
+          twosButton.setVisible(false);
+        }
+        if(play.checkThrees() == true){
+          threesButton.setVisible(true);
+        }
+        else{
+          threesButton.setVisible(false);
+        }
+        if(play.checkFours() == true){
+          foursButton.setVisible(true);
+        }
+        else{
+          foursButton.setVisible(false);
+        }
+        if(play.checkFives() == true){
+          fivesButton.setVisible(true);
+        }
+        else{
+          fivesButton.setVisible(false);
+        }
+        if(play.checkSixes() == true){
+          sixesButton.setVisible(true);
+        }
+        else{
+          sixesButton.setVisible(false);
+        }
+        
         if(play.getRollCount() >= 3){
           rollButton.setVisible(false);
           saveOne.setVisible(false);
