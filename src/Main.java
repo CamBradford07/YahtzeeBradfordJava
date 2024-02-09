@@ -612,6 +612,16 @@ public class Main {
       }
     });
 
+    onesButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+      play.completeOnes();
+      onesButton.setVisible(false);
+      play1Score.setText("Score: " + play.getScore());
+      }
+    });
+    
+
     panel.add(askPlayerCount);
     panel.add(getPlayerCount);
     panel.add(submit);
