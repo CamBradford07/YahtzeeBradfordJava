@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 
 public class Main {
   public static void main(String[] args) {
@@ -275,6 +276,7 @@ public class Main {
     Computer comp3 = new Computer("rick");
     Player play = new Player("LOSER");
 
+    ArrayList<Computer> comps = new ArrayList<Computer>();
     submitNames.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -284,10 +286,13 @@ public class Main {
 
         if (playerCount >= 2) {
           comp1.setName(player2Name.getText());
+          comps.add(comp1);
           if (playerCount >= 3) {
             comp2.setName(player3Name.getText());
+            comps.add(comp2);
             if (playerCount == 4) {
               comp3.setName(player4Name.getText());
+              comps.add(comp3);
             }
           }
         }
@@ -915,6 +920,7 @@ public class Main {
         largeStraightButton.setVisible(false);
         yahtzeeButton.setVisible(false);
         play1Score.setText("Score: " + play.getScore());
+        
       }
     });
 

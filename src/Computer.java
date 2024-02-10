@@ -159,6 +159,9 @@ public class Computer {
       if (checkBonus() == true) {
         totalScore += 35;
       }
+      if(rollCount < 3){
+        roll();
+      }
     } else if (rollCount == 3) {
       if (chanceDone == false) {
         chanceDone = true;
