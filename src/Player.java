@@ -468,4 +468,9 @@ public class Player {
   public boolean getYahtzeeDone(){
     return yahtzeeDone;
   }
+
+  public void resetRollCount(){
+    rollCount = 0;
+    \\
+  }
 }

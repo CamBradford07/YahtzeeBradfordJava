@@ -12,11 +12,15 @@ public class Main {
     applyNames.setSize(500, 500);
     JFrame game = new JFrame("Play Yahtzee");
     game.setSize(1500, 750);
+    JFrame win = new JFrame("Winner");
 
     JPanel panel = new JPanel(new GridLayout(3, 1));
     JPanel getNames = new JPanel(new GridLayout(6, 1));
     JPanel playGame = new JPanel(new GridLayout(12, 17));
+    JPanel showWinner = new JPanel(new GridLayout(2,1));
 
+    JLabel winner = new JLabel("");
+    
     JLabel askPlayerCount = new JLabel("How many computers do you want to play against? 1-3");
     JTextField getPlayerCount = new JTextField();
     JButton submit = new JButton("Submit");
@@ -85,6 +89,8 @@ public class Main {
     JButton saveFour = new JButton("save 4");
     JButton saveFive = new JButton("save 5");
 
+    JButton resetGame = new JButton("Start new Game");
+
     JLabel play1Name = new JLabel("");
     JLabel play1Bonus = new JLabel("Bonus: ");
     JLabel play1Ones = new JLabel("Ones: ");
@@ -93,8 +99,8 @@ public class Main {
     JLabel play1Fours = new JLabel("Fours: ");
     JLabel play1Fives = new JLabel("Fives: ");
     JLabel play1Sixes = new JLabel("Sixes: ");
-    JLabel play1SmallStraight = new JLabel("S Run:");
-    JLabel play1LargeStraight = new JLabel("L Run:");
+    JLabel play1SmallStraight = new JLabel("S Run: ");
+    JLabel play1LargeStraight = new JLabel("L Run: ");
     JLabel play1Chance = new JLabel("Chance: ");
     JLabel play1FourKind = new JLabel("4 Set: ");
     JLabel play1ThreeKind = new JLabel("3 Set: ");
@@ -110,8 +116,8 @@ public class Main {
     JLabel play2Fours = new JLabel("Fours: ");
     JLabel play2Fives = new JLabel("Fives: ");
     JLabel play2Sixes = new JLabel("Sixes: ");
-    JLabel play2SmallStraight = new JLabel("S Run:");
-    JLabel play2LargeStraight = new JLabel("L Run:");
+    JLabel play2SmallStraight = new JLabel("S Run: ");
+    JLabel play2LargeStraight = new JLabel("L Run: ");
     JLabel play2Chance = new JLabel("Chance: ");
     JLabel play2FourKind = new JLabel("4 Set: ");
     JLabel play2ThreeKind = new JLabel("3 Set: ");
@@ -127,8 +133,8 @@ public class Main {
     JLabel play3Fours = new JLabel("Fours: ");
     JLabel play3Fives = new JLabel("Fives: ");
     JLabel play3Sixes = new JLabel("Sixes: ");
-    JLabel play3SmallStraight = new JLabel("S Run:");
-    JLabel play3LargeStraight = new JLabel("L Run:");
+    JLabel play3SmallStraight = new JLabel("S Run: ");
+    JLabel play3LargeStraight = new JLabel("L Run: ");
     JLabel play3Chance = new JLabel("Chance: ");
     JLabel play3FourKind = new JLabel("4 Set: ");
     JLabel play3ThreeKind = new JLabel("3 Set: ");
@@ -144,8 +150,8 @@ public class Main {
     JLabel play4Fours = new JLabel("Fours: ");
     JLabel play4Fives = new JLabel("Fives: ");
     JLabel play4Sixes = new JLabel("Sixes: ");
-    JLabel play4SmallStraight = new JLabel("S Run:");
-    JLabel play4LargeStraight = new JLabel("L Run:");
+    JLabel play4SmallStraight = new JLabel("S Run: ");
+    JLabel play4LargeStraight = new JLabel("L Run: ");
     JLabel play4Chance = new JLabel("Chance: ");
     JLabel play4FourKind = new JLabel("4 Set: ");
     JLabel play4ThreeKind = new JLabel("3 Set: ");
@@ -237,6 +243,22 @@ public class Main {
       play4Yahtzee
     };
 
+    JLabel[] computerYahtzees = {play2Yahtzee, play3Yahtzee, play4Yahtzee};
+    JLabel[] computerSmallStraight = {play2SmallStraight, play3SmallStraight, play4SmallStraight};
+    JLabel[] computerLargeStraight = {play2LargeStraight, play3LargeStraight, play4LargeStraight};
+    JLabel[] computerThreeKinds = {play2ThreeKind, play3ThreeKind, play4ThreeKind};
+    JLabel[] computerFourKinds = {play2FourKind, play3FourKind, play4FourKind};
+    JLabel[] computerFullHouses = {play2FullHouse, play3FullHouse, play4FullHouse};
+    JLabel[] computerChances = {play2Chance, play3Chance, play4Chance};
+    JLabel[] computerOnes = {play2Ones, play3Ones, play4Ones};
+    JLabel[] computerTwos = {play2Twos, play3Twos, play4Twos};
+    JLabel[] computerThrees = {play2Threes, play3Threes, play4Threes};
+    JLabel[] computerFours = {play2Fours, play3Fours, play4Fours};
+    JLabel[] computerFives = {play2Fives, play3Fives, play4Fives};
+    JLabel[] computerSixes = {play2Sixes, play3Sixes, play4Sixes};
+    JLabel[] computerBonuses = {play2Bonus, play3Bonus, play4Bonus};
+      JLabel[] computerScores = {play2Score, play3Score, play4Score};
+    
     saveOne.setVisible(false);
     saveTwo.setVisible(false);
     saveThree.setVisible(false);
@@ -545,15 +567,83 @@ public class Main {
           sixesButton.setVisible(false);
         }
         
-//        if(play.getRollCount() >= 3){
-//          rollButton.setVisible(false);
-//          saveOne.setVisible(false);
-//          saveTwo.setVisible(false);
-//          saveThree.setVisible(false);
-//          saveFour.setVisible(false);
-//          saveFive.setVisible(false);
-//          resetSaved.setVisible(false);
-//        }
+       if(play.getRollCount() >= 3){
+         rollButton.setVisible(false);
+         saveOne.setVisible(false);
+         saveTwo.setVisible(false);
+         saveThree.setVisible(false);
+         saveFour.setVisible(false);
+         saveFive.setVisible(false);
+         resetSaved.setVisible(false);
+         for(int i = 0; i < comps.size(); i++){
+           int[] computerRolled = new int[5];
+           boolean tookTurn = false;
+           while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+             computerRolled = comps.get(i).roll();
+             for (int x = 0; x < computerRolled.length; x++) {
+               if (computerRolled[x] == 1) {
+                 dieImages[x].setIcon(die1icon);
+               } else if (computerRolled[i] == 2) {
+                 dieImages[x].setIcon(die2icon);
+               } else if (computerRolled[i] == 3) {
+                 dieImages[x].setIcon(die3icon);
+               } else if (computerRolled[i] == 4) {
+                 {
+                   dieImages[x].setIcon(die4icon);
+                 }
+               } else if (computerRolled[i] == 5) {
+                 dieImages[i].setIcon(die5icon);
+               } else {
+                 dieImages[i].setIcon(die6icon);
+               }
+             }
+             tookTurn = comps.get(i).takeTurn();
+           }
+           if(comps.get(i).getYahtzeeDone() == true){
+             computerYahtzees[i].setText("Yahtzee: ✓");
+           }
+           if(comps.get(i).getChanceDone() == true){
+             computerChances[i].setText("Chance: ✓");
+           }
+           if(comps.get(i).getThreeKindDone() == true){
+             computerThreeKinds[i].setText("3 Set: ✓");
+           }
+           if(comps.get(i).getFourKindDone() == true){
+             computerFourKinds[i].setText("4 Set: ✓");
+           }
+           if(comps.get(i).getFullHouseDone() == true){
+             computerFullHouses[i].setText("Full: ✓");
+           }
+           if(comps.get(i).getSmallStraightDone() == true){
+             computerSmallStraight[i].setText("S Run: ✓");
+           }
+           if(comps.get(i).getLargeStraightDone() == true){
+             computerLargeStraight[i].setText("R Run: ✓");
+           }
+           if(comps.get(i).getOnesDone() == true){
+             computerOnes[i].setText("Ones: ✓");
+           }
+           if(comps.get(i).getTwosDone() == true){
+             computerTwos[i].setText("Twos: ✓");
+           }
+           if(comps.get(i).getThreesDone() == true){
+             computerThrees[i].setText("Threes: ✓");
+           }
+           if(comps.get(i).getFoursDone() == true){
+             computerFours[i].setText("Fours: ✓");
+           }
+           if(comps.get(i).getFivesDone() == true){
+             computerFives[i].setText("Fives: ✓");
+           }
+           if(comps.get(i).getSixesDone() == true){
+             computerSixes[i].setText("Sixes: ✓");
+           }
+           if(comps.get(i).getBonusDone() == true){
+             computerBonuses[i].setText("Bonus: ✓");
+           }
+           computerScores[i].setText("Scores: " + comps.get(i).getScore());
+         }
+       }
       }
     });
 
@@ -622,6 +712,16 @@ public class Main {
       public void actionPerformed(ActionEvent e) {
       play.completeOnes();
       play1Ones.setText(play1Ones.getText() + "✓");
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
         twosButton.setVisible(false);
@@ -639,13 +739,106 @@ public class Main {
       if(play.checkBonus() == true){
         play1Bonus.setText("Bonus: ✓");
       }
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
       }
-    });
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
+      }
+    }
+                                 
+                                 );
 
     twosButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeTwos();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1Twos.setText(play1Twos.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -664,6 +857,88 @@ public class Main {
         if(play.checkBonus() == true){
           play1Bonus.setText("Bonus: ✓");
         }
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -671,6 +946,16 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeThrees();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1Threes.setText(play1Threes.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -689,6 +974,88 @@ public class Main {
         if(play.checkBonus() == true){
           play1Bonus.setText("Bonus: ✓");
         }
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -696,6 +1063,16 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeFours();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1Fours.setText(play1Fours.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -714,6 +1091,88 @@ public class Main {
         if(play.checkBonus() == true){
           play1Bonus.setText("Bonus: ✓");
         }
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -721,6 +1180,16 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeFives();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1Fives.setText(play1Fives.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -739,6 +1208,88 @@ public class Main {
         if(play.checkBonus() == true){
           play1Bonus.setText("Bonus: ✓");
         }
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -746,6 +1297,16 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeSixes();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1Sixes.setText(play1Sixes.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -764,6 +1325,88 @@ public class Main {
         if(play.checkBonus() == true){
           play1Bonus.setText("Bonus: ✓");
         }
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -774,6 +1417,16 @@ public class Main {
           play1Yahtzee.setText(play1Yahtzee.getText() + "✓");
         }
         play.completeYahtzee();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
         twosButton.setVisible(false);
@@ -788,6 +1441,88 @@ public class Main {
         largeStraightButton.setVisible(false);
         yahtzeeButton.setVisible(false);
         play1Score.setText("Score: " + play.getScore());
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -795,6 +1530,16 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeSmallStraight();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1SmallStraight.setText(play1SmallStraight.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -810,6 +1555,88 @@ public class Main {
         largeStraightButton.setVisible(false);
         yahtzeeButton.setVisible(false);
         play1Score.setText("Score: " + play.getScore());
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -817,6 +1644,16 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeLargeStraight();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1LargeStraight.setText(play1LargeStraight.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -832,6 +1669,88 @@ public class Main {
         largeStraightButton.setVisible(false);
         yahtzeeButton.setVisible(false);
         play1Score.setText("Score: " + play.getScore());
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -839,6 +1758,16 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeFourKind();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1FourKind.setText(play1FourKind.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -854,6 +1783,88 @@ public class Main {
         largeStraightButton.setVisible(false);
         yahtzeeButton.setVisible(false);
         play1Score.setText("Score: " + play.getScore());
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -861,6 +1872,16 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeThreeKind();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1ThreeKind.setText(play1ThreeKind.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -876,6 +1897,88 @@ public class Main {
         largeStraightButton.setVisible(false);
         yahtzeeButton.setVisible(false);
         play1Score.setText("Score: " + play.getScore());
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -883,6 +1986,16 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeFullHouse();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1FullHouse.setText(play1FullHouse.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -898,6 +2011,88 @@ public class Main {
         largeStraightButton.setVisible(false);
         yahtzeeButton.setVisible(false);
         play1Score.setText("Score: " + play.getScore());
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
@@ -905,6 +2100,16 @@ public class Main {
       @Override
       public void actionPerformed(ActionEvent e) {
         play.completeChance();
+        boolean playerWin = play.checkWin();
+        if(playerWin == true){
+          winner.setText("Winner is " + play.getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
         play1Chance.setText(play1Chance.getText() + "✓");
         chanceButton.setVisible(false);
         onesButton.setVisible(false);
@@ -921,6 +2126,88 @@ public class Main {
         yahtzeeButton.setVisible(false);
         play1Score.setText("Score: " + play.getScore());
         
+      
+      for(int i = 0; i < comps.size(); i++){
+        int[] computerRolled = new int[5];
+        boolean tookTurn = false;
+        while(tookTurn == false && comps.get(i).getRollCount() <= 3){
+          computerRolled = comps.get(i).roll();
+          for (int x = 0; x < computerRolled.length; x++) {
+            if (computerRolled[x] == 1) {
+              dieImages[x].setIcon(die1icon);
+            } else if (computerRolled[i] == 2) {
+              dieImages[x].setIcon(die2icon);
+            } else if (computerRolled[i] == 3) {
+              dieImages[x].setIcon(die3icon);
+            } else if (computerRolled[i] == 4) {
+              {
+                dieImages[x].setIcon(die4icon);
+              }
+            } else if (computerRolled[i] == 5) {
+              dieImages[i].setIcon(die5icon);
+            } else {
+              dieImages[i].setIcon(die6icon);
+            }
+          }
+          tookTurn = comps.get(i).takeTurn();
+        }
+        if(comps.get(i).getYahtzeeDone() == true){
+          computerYahtzees[i].setText("Yahtzee: ✓");
+        }
+        if(comps.get(i).getChanceDone() == true){
+          computerChances[i].setText("Chance: ✓");
+        }
+        if(comps.get(i).getThreeKindDone() == true){
+          computerThreeKinds[i].setText("3 Set: ✓");
+        }
+        if(comps.get(i).getFourKindDone() == true){
+          computerFourKinds[i].setText("4 Set: ✓");
+        }
+        if(comps.get(i).getFullHouseDone() == true){
+          computerFullHouses[i].setText("Full: ✓");
+        }
+        if(comps.get(i).getSmallStraightDone() == true){
+          computerSmallStraight[i].setText("S Run: ✓");
+        }
+        if(comps.get(i).getLargeStraightDone() == true){
+          computerLargeStraight[i].setText("R Run: ✓");
+        }
+        if(comps.get(i).getOnesDone() == true){
+          computerOnes[i].setText("Ones: ✓");
+        }
+        if(comps.get(i).getTwosDone() == true){
+          computerTwos[i].setText("Twos: ✓");
+        }
+        if(comps.get(i).getThreesDone() == true){
+          computerThrees[i].setText("Threes: ✓");
+        }
+        if(comps.get(i).getFoursDone() == true){
+          computerFours[i].setText("Fours: ✓");
+        }
+        if(comps.get(i).getFivesDone() == true){
+          computerFives[i].setText("Fives: ✓");
+        }
+        if(comps.get(i).getSixesDone() == true){
+          computerSixes[i].setText("Sixes: ✓");
+        }
+        if(comps.get(i).getBonusDone() == true){
+          computerBonuses[i].setText("Bonus: ✓");
+        }
+        computerScores[i].setText("Scores: " + comps.get(i).getScore());
+        boolean compWin = comps.get(i).checkWin();
+        if(compWin == true){
+          winner.setText("Winner is " + comps.get(i).getName());
+          showWinner.add(winner);
+          showWinner.add(resetGame);
+          win.add(showWinner);
+          win.setSize(500,250);
+          win.setVisible(true);
+          game.setVisible(false);
+        }
+      }
+        play.resetRollCount();
+        rollButton.setVisible(true);
+        resetSaved.setVisible(true);
       }
     });
 
