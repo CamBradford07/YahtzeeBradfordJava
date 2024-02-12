@@ -58,6 +58,8 @@ public class Player {
     largeStraightDone = false;
     yahtzeeDone = false;
     chanceDone = false;
+    totalScore = 0;
+    upperScore = 0;
   }
 
   public int[] roll() {
@@ -471,6 +473,23 @@ public class Player {
 
   public void resetRollCount(){
     rollCount = 0;
-    \\
+  }
+
+  public void reset(){
+    onesDone = false;
+    twosDone = false;
+    threesDone = false;
+    foursDone = false;
+    fivesDone = false;
+    sixesDone = false;
+    fullHouseDone = false;
+    fourKindDone = false;
+    threeKindDone = false;
+    smallStraightDone = false;
+    largeStraightDone = false;
+    yahtzeeDone = false;
+    chanceDone = false;
+    totalScore = 0;
+    upperScore = 0;
   }
 }

@@ -422,4 +422,22 @@ public boolean getChanceDone(){
   public boolean getBonusDone(){
     return checkBonus();
   }
+
+  public void reset(){
+    onesDone = false;
+    twosDone = false;
+    threesDone = false;
+    foursDone = false;
+    fivesDone = false;
+    sixesDone = false;
+    smallStraightDone = false;
+    largeStraightDone = false;
+    threeKindDone = false;
+    fourKindDone = false;
+    fullHouseDone = false;
+    yahtzeeDone = false;
+    chanceDone = false;
+    upperScore = 0;
+    totalScore = 0;
+  }
 }

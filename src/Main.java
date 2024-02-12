@@ -635,9 +635,7 @@ public class Main {
                 } else if (computerRolled[i] == 3) {
                   dieImages[x].setIcon(die3icon);
                 } else if (computerRolled[i] == 4) {
-                  {
                     dieImages[x].setIcon(die4icon);
-                  }
                 } else if (computerRolled[i] == 5) {
                   dieImages[i].setIcon(die5icon);
                 } else {
@@ -2257,6 +2255,91 @@ public class Main {
       }
     });
 
+      resetGame.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+          win.setVisible(false);
+            play1Name.setText("");
+            play1Bonus.setText("Bonus: ");
+            play1Ones.setText("Ones: ");
+            play1Twos.setText("Twos: ");
+            play1Threes.setText("Threes: ");
+            play1Fours.setText("Fours: ");
+            play1Fives.setText("Fives: ");
+            play1Sixes.setText("Sixes: ");
+            play1SmallStraight.setText("S Run: ");
+            play1LargeStraight.setText("L Run: ");
+            play1Chance.setText("Chance: ");
+            play1FourKind.setText("4 Set: ");
+            play1ThreeKind.setText("3 Set: ");
+            play1Yahtzee.setText("Yahtzee: ");
+            play1FullHouse.setText("Full: ");
+            play1Score.setText("Score: 0");
+
+            play2Name.setText("");
+            play2Bonus.setText("Bonus: ");
+            play2Ones.setText("Ones: ");
+            play2Twos.setText("Twos: ");
+            play2Threes.setText("Threes: ");
+            play2Fours.setText("Fours: ");
+            play2Fives.setText("Fives: ");
+            play2Sixes.setText("Sixes: ");
+            play2SmallStraight.setText("S Run: ");
+            play2LargeStraight.setText("L Run: ");
+            play2Chance.setText("Chance: ");
+            play2FourKind.setText("4 Set: ");
+            play2ThreeKind.setText("3 Set: ");
+            play2Yahtzee.setText("Yahtzee: ");
+            play2FullHouse.setText("Full: ");
+            play2Score.setText("Score: 0");
+
+            play3Name.setText("");
+            play3Bonus.setText("Bonus: ");
+            play3Ones.setText("Ones: ");
+            play3Twos.setText("Twos: ");
+            play3Threes.setText("Threes: ");
+            play3Fours.setText("Fours: ");
+            play3Fives.setText("Fives: ");
+            play3Sixes.setText("Sixes: ");
+            play3SmallStraight.setText("S Run: ");
+            play3LargeStraight.setText("L Run: ");
+            play3Chance.setText("Chance: ");
+            play3FourKind.setText("4 Set: ");
+            play3ThreeKind.setText("3 Set: ");
+            play3Yahtzee.setText("Yahtzee: ");
+            play3FullHouse.setText("Full: ");
+            play3Score.setText("Score: 0");
+
+            play4Name.setText("");
+            play4Bonus.setText("Bonus: ");
+            play4Ones.setText("Ones: ");
+            play4Twos.setText("Twos: ");
+            play4Threes.setText("Threes: ");
+            play4Fours.setText("Fours: ");
+            play4Fives.setText("Fives: ");
+            play4Sixes.setText("Sixes: ");
+            play4SmallStraight.setText("S Run: ");
+            play4LargeStraight.setText("L Run: ");
+            play4Chance.setText("Chance: ");
+            play4FourKind.setText("4 Set: ");
+            play4ThreeKind.setText("3 Set: ");
+            play4Yahtzee.setText("Yahtzee: ");
+            play4FullHouse.setText("Full: ");
+            play4Score.setText("Score: 0");
+            comp1.reset();
+            comp2.reset();
+            comp3.reset();
+            play.reset();
+            askPlayerCount.setText("How many computers do you want to play against? 1-3");
+            firstDie.setIcon(die1icon);
+            secondDie.setIcon(die1icon);
+            thirdDie.setIcon(die1icon);
+            fourthDie.setIcon(die1icon);
+            fifthDie.setIcon(die1icon);
+            frame.setVisible(true);
+          }
+        });
+    
     panel.add(askPlayerCount);
     panel.add(getPlayerCount);
     panel.add(submit);
